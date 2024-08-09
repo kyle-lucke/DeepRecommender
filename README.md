@@ -1,4 +1,7 @@
 # Deep AutoEncoders for Collaborative Filtering
+
+**I AM NOT THE ORIGINAL AUTHOR OF THIS METHOD**
+
 This is not an official NVIDIA product. It is a research project described in: "Training Deep AutoEncoders for Collaborative Filtering"(https://arxiv.org/abs/1708.01715)
 
 ### The model
