@@ -1,6 +1,13 @@
 # Copyright (c) 2017 NVIDIA Corporation
+import json
+from pathlib import Path
 import argparse
 from math import sqrt
+
+def save_metrics(metrics, out_dir, fname='metrics.json'):
+  save_fname = os.path.join(out_dir, fname)
+  json.dump({k: v for k, v in metrics.items()}, open(save_fname, 'w'))
+
 
 parser = argparse.ArgumentParser(description='RMSE_calculator')
 
@@ -23,9 +30,14 @@ def main():
       rating = float(parts[3])
       denom += (prediction - rating)*(prediction - rating)
       n += 1
+
+  rmse = sqrt(denom/n)
   print("####################")
-  print("RMSE: {}".format(sqrt(denom/n)))
+  print(f"RMSE: {rmse}")
   print("####################")
 
+  save_metrics({'rmse': rmse}, Path(args.path_to_predictions).parent)
+  
 if __name__ == '__main__':
   main()
+
